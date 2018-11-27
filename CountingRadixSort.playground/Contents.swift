@@ -2,12 +2,18 @@ import UIKit
 
 var str = "Hello, playground"
 
+// Radix sort
+func radixSort(numOfDigits d: Int, numOfInts n: Int) -> [Int] {
+    var A = generateRandomIntArray(with: n, upperBound: nil, digits: d)
+    
+    return A
+}
 
 // Counting sort algo
 func countingSort(upperBound k: Int, numOfIntegers n: Int) -> [Int] {
     
     // Call to helper fnx for generating random array of Ints
-    let A = generateRandomIntArray(with: n, upperBound: k)
+    let A = generateRandomIntArray(with: n, upperBound: k, digits: nil)
     var aux = [Int]()
     
     // Generate k 0s for the auxilary array
@@ -49,12 +55,29 @@ func countingSort(upperBound k: Int, numOfIntegers n: Int) -> [Int] {
  ** Random ints will be between 0 to k
 
 */
-func generateRandomIntArray(with n: Int, upperBound k: Int) -> [Int] {
+func generateRandomIntArray(with n: Int, upperBound k: Int?, digits d: Int?) -> [Int] {
     var aux = [Int]()
+    var lowerLimit: Int = 0
+    var upperLimit: Int = 0
     
+    if let digits = d {
+        if digits == 1 {
+            upperLimit = 10
+        }
+        else if digits > 1 {
+            let d = digits
+            lowerLimit = 1
+            for _ in 1..<d {
+                lowerLimit *= 10
+            }
+            upperLimit = lowerLimit * 10
+        }
+    } else if let upperBound = k {
+        upperLimit = upperBound
+    }
     
     for _ in 0..<n {
-        aux.append(Int.random(in: 0...k))
+        aux.append(Int.random(in: lowerLimit...upperLimit))
     }
     
     print(aux)
@@ -62,4 +85,7 @@ func generateRandomIntArray(with n: Int, upperBound k: Int) -> [Int] {
     return aux
 }
 
-print(countingSort(upperBound: 10, numOfIntegers: 5))
+
+
+// print(countingSort(upperBound: 10, numOfIntegers: 5))
+radixSort(numOfDigits: 4, numOfInts: 10)
