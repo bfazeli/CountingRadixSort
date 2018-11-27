@@ -21,7 +21,7 @@ func countingSort(upperBound k: Int, numOfIntegers n: Int) -> [Int] {
     }
     
     // Modify the aux array to show the amount of digits no greater than the current index
-    for j in 1..<k {
+    for j in 1...k {
         aux[j] = aux[j] + aux[j-1]
     }
     
