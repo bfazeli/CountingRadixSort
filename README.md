@@ -1,2 +1,2 @@
 # CountingRadixSort
-Implementation of the Counting sort algorithm and Radix sort algorithm.
+Implementation of a stable Counting sort algorithm and a stable Radix sort algorithm.
